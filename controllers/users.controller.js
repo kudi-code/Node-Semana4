@@ -8,6 +8,8 @@ const { catchAsync } = require('../utils/catchAsync');
 //Models
 const { User } = require('../models/users.model');
 const { AppError } = require('../utils/appError');
+const { Email } = require('../utils/email');
+
 
 
 //Init dotenv
@@ -22,7 +24,7 @@ const getAllUsers = catchAsync(async (req, res,next) => {
 });
 
 const createUser = catchAsync(async (req, res, next) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password, role } = req.body;  
 
   const salt = await bcrypt.genSalt(12);
   const hashPassword = await bcrypt.hash(password, salt);
@@ -34,6 +36,9 @@ const createUser = catchAsync(async (req, res, next) => {
     password: hashPassword,
     role,
   });
+
+  //Sending Email
+  await new Email(newUser.email).sendWelcome(newUser.name);
 
   // Remove password from response
   newUser.password = undefined;

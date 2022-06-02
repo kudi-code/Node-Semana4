@@ -4,7 +4,7 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
-
+const path = require('path');
 
 // Controllers
 const { globalErrorHandler } = require('./controllers/errors.controller');
@@ -20,6 +20,13 @@ app.use(cors());
 
 //Enable incoming JSON data
 app.use(express.json());
+
+// Enable incoming Form-Data
+app.use(express.urlencoded({ extended: true }));
+
+// Set pug as template engine
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
 
 // Add security headers
 app.use(helmet());

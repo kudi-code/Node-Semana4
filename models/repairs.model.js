@@ -21,11 +21,13 @@ const Repair = db.define('repairs', {
     },    
     comments:{
         type: DataTypes.STRING ,
-        defaultValue: 'pending'
     },
     status:{
         type: DataTypes.STRING ,
         defaultValue: 'pending'
+    },
+    imgPath: {
+        type: DataTypes.STRING ,
     },
     userId:{
         type: DataTypes.INTEGER , 
