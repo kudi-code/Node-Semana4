@@ -16,16 +16,16 @@ const createUserValidations = [
 
 const createRepairsValidation = [
     // body('Date').isLength({min: 10, max: 10}).withMessage('Date must have a format: YYYY-MM-DD and '),
-    body('computerNumber')
-      .notEmpty()
-      .withMessage('computerNumber cannot be empty')
-      .isNumeric()
-      .withMessage('Must be a number'),
-    body('comments')
-      .notEmpty()
-      .withMessage('Comments cannot be empty')
-      .isString()
-      .withMessage('Must be text'),
+    // body('computerNumber')
+    //   .notEmpty()
+    //   .withMessage('computerNumber cannot be empty')
+    //   .isNumeric()
+    //   .withMessage('Must be a number'),
+    // body('comments')
+    //   .notEmpty()
+    //   .withMessage('Comments cannot be empty')
+    //   .isString()
+    //   .withMessage('Must be text'),
   ];
 
 const checkValidations = (req, res, next) => {

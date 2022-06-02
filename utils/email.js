@@ -12,15 +12,15 @@ class Email {
 
   // Create a connection with an email service
   newTransport() {
-    if (process.env.NODE_ENV === 'production') {
-      return nodemailer.createTransport({
-        service: 'SendGrid',
-        auth: {
-          user: 'apikey',
-          pass: process.env.SENDGRID_API_KEY,
-        },
-      });
-    }
+    // if (process.env.NODE_ENV === 'development') {
+    //   return nodemailer.createTransport({
+    //     service: 'SendGrid',
+    //     auth: {
+    //       user: 'apikey',
+    //       pass: process.env.SENDGRID_API_KEY,
+    //     },
+    //   });
+    // }
 
     return nodemailer.createTransport({
       host: 'smtp.mailtrap.io',
@@ -56,7 +56,7 @@ class Email {
 
   // Send an email when a post is published
   async sendUpdateNotice(state) {
-    await this.send(`Hello! Your account has been: ${state}`, 'Changes in the account', {state});
+    await this.send(`updateAccount`, 'Changes in the account', {state});
   }
 }
 

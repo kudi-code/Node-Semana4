@@ -43,13 +43,16 @@ const getPendingById = catchAsync(async (req, res) => {
 });
 
 const createPending = catchAsync(async (req, res) => {
-    const { date, userId } = req.body;
+    const { date,computerNumber, comments } = req.body;
+    const { sessionUser} = req
+
+    console.log(req.file)
 
     const imgRef = ref(storage, `users/${Date.now()}-${req.file.originalname}`);
     const imgUploaded = await uploadBytes(imgRef, req.file.buffer);
 
-    const newRepair = await Repair.create({ date, userId,
-        imgPath: imgUploaded.metadata.fullPath,    
+    const newRepair = await Repair.create({ date, userId: sessionUser.id,
+        imgPath: imgUploaded.metadata.fullPath,computerNumber, comments
     });
 
     //Obtiene la nueva lista de repairs y lo envía como respuesta
