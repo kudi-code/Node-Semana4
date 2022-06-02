@@ -23,7 +23,7 @@ Repair.belongsTo(User);
 
 // Sync sequelize models
 db.sync(
-  {force: true}
+  // {force: true}
 )
   .then(() => console.log('Database synced'))
   .catch(err => console.log(err));
